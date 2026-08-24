@@ -2777,3 +2777,973 @@ footer {
     }
 
 }
+
+/* =====================================================
+   EXPERIENCE GALLERY
+===================================================== */
+
+.experience-gallery {
+
+    margin-top:
+        110px;
+
+}
+
+
+/* HEADER */
+
+.experience-gallery-heading {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        end;
+
+    gap:
+        50px;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.experience-gallery-heading > p {
+
+    max-width:
+        430px;
+
+    margin:
+        0;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.6;
+
+}
+
+
+.experience-gallery-title {
+
+    font-family:
+        Anton,
+        sans-serif;
+
+    font-size:
+        clamp(45px, 6vw, 75px);
+
+    line-height:
+        .85;
+
+    font-weight:
+        400;
+
+    text-transform:
+        uppercase;
+
+    color:
+        var(--green);
+
+    margin:
+        10px 0 0;
+
+}
+
+
+.experience-gallery-title span {
+
+    color:
+        var(--orange);
+
+    display:
+        block;
+
+}
+
+
+/* CAROUSEL */
+
+.experience-carousel {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+
+}
+
+
+.experience-viewport {
+
+    overflow:
+        hidden;
+
+    width:
+        100%;
+
+    border-radius:
+        30px;
+
+}
+
+
+.experience-track {
+
+    display:
+        flex;
+
+    transition:
+        transform .65s cubic-bezier(.2,.8,.2,1);
+
+    will-change:
+        transform;
+
+}
+
+
+/* SLIDE */
+
+.experience-slide {
+
+    flex:
+        0 0 100%;
+
+    min-width:
+        100%;
+
+    position:
+        relative;
+
+    aspect-ratio:
+        16 / 8;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--green);
+
+    cursor:
+        pointer;
+
+}
+
+
+.experience-slide img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.experience-slide:hover img {
+
+    transform:
+        scale(1.045);
+
+}
+
+
+/* OVERLAY */
+
+.experience-slide::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,35,30,.65),
+            transparent 50%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.experience-slide-info {
+
+    position:
+        absolute;
+
+    left:
+        28px;
+
+    bottom:
+        25px;
+
+    z-index:
+        2;
+
+    color:
+        var(--white);
+
+}
+
+
+.experience-slide-info strong {
+
+    display:
+        block;
+
+    font-family:
+        Anton,
+        sans-serif;
+
+    font-size:
+        30px;
+
+    font-weight:
+        400;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.experience-slide-info span {
+
+    font-size:
+        13px;
+
+    opacity:
+        .85;
+
+}
+
+
+/* PLAY BUTTON */
+
+.experience-play {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index:
+        3;
+
+    width:
+        78px;
+
+    height:
+        78px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--orange);
+
+    color:
+        white;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    font-size:
+        28px;
+
+    padding-left:
+        4px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+
+}
+
+
+.experience-slide:hover .experience-play {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+}
+
+
+/* ARROWS */
+
+.experience-arrow {
+
+    flex:
+        0 0 52px;
+
+    width:
+        52px;
+
+    height:
+        52px;
+
+    border:
+        2px solid
+        var(--green);
+
+    background:
+        var(--cream-light);
+
+    color:
+        var(--green);
+
+    border-radius:
+        50%;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    font-size:
+        22px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    z-index:
+        5;
+
+    transition:
+        .25s ease;
+
+}
+
+
+.experience-arrow:hover {
+
+    background:
+        var(--green);
+
+    color:
+        var(--cream);
+
+    transform:
+        scale(1.08);
+
+}
+
+
+.experience-arrow:disabled {
+
+    opacity:
+        .35;
+
+    cursor:
+        default;
+
+    transform:
+        none;
+
+}
+
+
+/* DOTS */
+
+.experience-dots {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    margin-top:
+        20px;
+
+}
+
+
+.experience-dot {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    border:
+        0;
+
+    padding:
+        0;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(0,95,82,.25);
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+
+}
+
+
+.experience-dot.active {
+
+    width:
+        28px;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--orange);
+
+}
+
+
+/* =====================================================
+   YOUTUBE SLIDES
+===================================================== */
+
+.experience-video {
+
+    cursor:
+        default;
+
+}
+
+
+.experience-video iframe {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border:
+        0;
+
+    z-index:
+        4;
+
+}
+
+
+/* =====================================================
+   LIGHTBOX
+===================================================== */
+
+.experience-lightbox {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        200;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+}
+
+
+.experience-lightbox.open {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    pointer-events:
+        auto;
+
+}
+
+
+.experience-lightbox-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        rgba(0,35,30,.88);
+
+    backdrop-filter:
+        blur(10px);
+
+}
+
+
+.experience-lightbox-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(1100px, 95vw);
+
+    max-height:
+        90vh;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    transform:
+        scale(.92)
+        translateY(20px);
+
+    transition:
+        transform .4s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.experience-lightbox.open
+.experience-lightbox-content {
+
+    transform:
+        scale(1)
+        translateY(0);
+
+}
+
+
+.experience-lightbox-content img {
+
+    display:
+        block;
+
+    max-width:
+        100%;
+
+    max-height:
+        78vh;
+
+    object-fit:
+        contain;
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.4);
+
+}
+
+
+.experience-lightbox-close {
+
+    position:
+        absolute;
+
+    right:
+        -15px;
+
+    top:
+        -15px;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--orange);
+
+    color:
+        white;
+
+    font-size:
+        30px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    z-index:
+        5;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.25);
+
+    transition:
+        .25s ease;
+
+}
+
+
+.experience-lightbox-close:hover {
+
+    transform:
+        rotate(90deg)
+        scale(1.08);
+
+}
+
+
+.experience-lightbox-caption {
+
+    color:
+        var(--cream);
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    margin-top:
+        15px;
+
+    text-align:
+        center;
+
+}
+
+
+/* =====================================================
+   EXPERIENCE RESPONSIVE
+===================================================== */
+
+@media(max-width: 900px) {
+
+    .experience-gallery {
+
+        margin-top:
+            75px;
+
+    }
+
+
+    .experience-gallery-heading {
+
+        display:
+            block;
+
+    }
+
+
+    .experience-gallery-heading > p {
+
+        margin-top:
+            20px;
+
+    }
+
+
+    .experience-carousel {
+
+        gap:
+            10px;
+
+    }
+
+
+    .experience-arrow {
+
+        flex:
+            0 0 45px;
+
+        width:
+            45px;
+
+        height:
+            45px;
+
+    }
+
+
+    .experience-slide {
+
+        aspect-ratio:
+            4 / 3;
+
+    }
+
+}
+
+
+@media(max-width: 600px) {
+
+    .experience-gallery {
+
+        margin-top:
+            65px;
+
+    }
+
+
+    .experience-gallery-heading {
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .experience-gallery-title {
+
+        font-size:
+            48px;
+
+    }
+
+
+    .experience-carousel {
+
+        display:
+            block;
+
+    }
+
+
+    .experience-viewport {
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .experience-slide {
+
+        aspect-ratio:
+            4 / 5;
+
+    }
+
+
+    .experience-slide-info {
+
+        left:
+            20px;
+
+        bottom:
+            20px;
+
+    }
+
+
+    .experience-slide-info strong {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .experience-arrow {
+
+        position:
+            absolute;
+
+        top:
+            50%;
+
+        transform:
+            translateY(-50%);
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+        z-index:
+            10;
+
+        background:
+            rgba(255,248,233,.92);
+
+    }
+
+
+    .experience-arrow:hover {
+
+        transform:
+            translateY(-50%)
+            scale(1.08);
+
+    }
+
+
+    .experience-prev {
+
+        left:
+            10px;
+
+    }
+
+
+    .experience-next {
+
+        right:
+            10px;
+
+    }
+
+
+    .experience-play {
+
+        width:
+            65px;
+
+        height:
+            65px;
+
+        font-size:
+            23px;
+
+    }
+
+
+    .experience-lightbox {
+
+        padding:
+            15px;
+
+    }
+
+
+    .experience-lightbox-content {
+
+        width:
+            100%;
+
+    }
+
+
+    .experience-lightbox-content img {
+
+        max-height:
+            75vh;
+
+        border-radius:
+            12px;
+
+    }
+
+
+    .experience-lightbox-close {
+
+        right:
+            0;
+
+        top:
+            -55px;
+
+    }
+
+}

@@ -931,3 +931,630 @@ document
 
         }
     );
+
+
+
+/* =====================================================
+   EXPERIENCE MEDIA
+=====================================================
+
+   AGREGAR FOTOS:
+
+   {
+       type: "image",
+       src: "assets/experiencia-01.jpg",
+       alt: "Descripción de la foto",
+       title: "Campamento",
+       caption: "Una nueva experiencia"
+   }
+
+
+   AGREGAR YOUTUBE:
+
+   {
+       type: "youtube",
+       id: "ID_DEL_VIDEO",
+       title: "Video de la experiencia",
+       caption: "Mirá cómo vivimos la experiencia"
+   }
+
+===================================================== */
+
+const experienceMedia = [
+
+    {
+        type: "image",
+        src: "assets/experiencia-01.jpg",
+        alt: "Experiencia Nuevas Sendas",
+        title: "Nuevas Sendas",
+        caption: "Experiencias que quedan para siempre."
+    },
+
+    {
+        type: "image",
+        src: "assets/experiencia-02.jpg",
+        alt: "Campamento Nuevas Sendas",
+        title: "Campamento",
+        caption: "Naturaleza, encuentro y aventura."
+    },
+
+    {
+        type: "image",
+        src: "assets/experiencia-03.jpg",
+        alt: "Viaje educativo",
+        title: "Viajes educativos",
+        caption: "Aprender también es salir a explorar."
+    }
+
+    /*
+    EJEMPLO DE VIDEO:
+
+    ,
+
+    {
+        type: "youtube",
+        id: "XXXXXXXXXXX",
+        title: "Nuestra experiencia",
+        caption: "Mirá lo que pasa cuando comienza una nueva senda."
+    }
+
+    */
+
+];
+
+
+
+/* =====================================================
+   EXPERIENCE CAROUSEL ELEMENTS
+===================================================== */
+
+const experienceTrack =
+    document.getElementById(
+        "experienceTrack"
+    );
+
+
+const experienceDots =
+    document.getElementById(
+        "experienceDots"
+    );
+
+
+const experiencePrev =
+    document.getElementById(
+        "experiencePrev"
+    );
+
+
+const experienceNext =
+    document.getElementById(
+        "experienceNext"
+    );
+
+
+const experienceLightbox =
+    document.getElementById(
+        "experienceLightbox"
+    );
+
+
+const experienceLightboxImage =
+    document.getElementById(
+        "experienceLightboxImage"
+    );
+
+
+const experienceLightboxCaption =
+    document.getElementById(
+        "experienceLightboxCaption"
+    );
+
+
+const experienceLightboxClose =
+    document.getElementById(
+        "experienceLightboxClose"
+    );
+
+
+
+let currentExperience =
+    0;
+
+
+
+/* =====================================================
+   BUILD EXPERIENCE CAROUSEL
+===================================================== */
+
+function buildExperienceCarousel() {
+
+    if (
+        !experienceTrack ||
+        !experienceDots
+    ) {
+
+        return;
+
+    }
+
+
+    experienceTrack.innerHTML =
+        "";
+
+    experienceDots.innerHTML =
+        "";
+
+
+    experienceMedia.forEach(
+        (media, index) => {
+
+            const slide =
+                document.createElement(
+                    "article"
+                );
+
+
+            slide.className =
+                "experience-slide";
+
+
+            /*
+             * IMAGE
+             */
+
+            if (
+                media.type === "image"
+            ) {
+
+                slide.innerHTML = `
+
+                    <img
+                        src="${media.src}"
+                        alt="${media.alt || ""}"
+                        loading="${index === 0 ? "eager" : "lazy"}"
+                    >
+
+                    <div class="experience-slide-info">
+
+                        <strong>
+                            ${media.title || "Experiencia"}
+                        </strong>
+
+                        <span>
+                            ${media.caption || ""}
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                slide.addEventListener(
+                    "click",
+                    () => {
+
+                        openExperienceLightbox(
+                            media
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /*
+             * YOUTUBE
+             */
+
+            if (
+                media.type === "youtube"
+            ) {
+
+                slide.classList.add(
+                    "experience-video"
+                );
+
+
+                slide.innerHTML = `
+
+                    <img
+                        src="https://img.youtube.com/vi/${media.id}/maxresdefault.jpg"
+                        alt="${media.title || "Video de Nuevas Sendas"}"
+                        loading="lazy"
+                    >
+
+                    <div class="experience-play">
+                        ▶
+                    </div>
+
+                    <div class="experience-slide-info">
+
+                        <strong>
+                            ${media.title || "Video"}
+                        </strong>
+
+                        <span>
+                            ${media.caption || ""}
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                slide.addEventListener(
+                    "click",
+                    () => {
+
+                        openYouTube(
+                            slide,
+                            media
+                        );
+
+                    }
+                );
+
+            }
+
+
+            experienceTrack.appendChild(
+                slide
+            );
+
+
+            /*
+             * DOT
+             */
+
+            const dot =
+                document.createElement(
+                    "button"
+                );
+
+
+            dot.className =
+                "experience-dot";
+
+
+            dot.setAttribute(
+                "aria-label",
+                `Ir a experiencia ${index + 1}`
+            );
+
+
+            dot.addEventListener(
+                "click",
+                () => {
+
+                    goToExperience(
+                        index
+                    );
+
+                }
+            );
+
+
+            experienceDots.appendChild(
+                dot
+            );
+
+        }
+    );
+
+
+    updateExperienceCarousel();
+
+}
+
+
+
+/* =====================================================
+   UPDATE CAROUSEL
+===================================================== */
+
+function updateExperienceCarousel() {
+
+    if (
+        !experienceTrack
+    ) {
+
+        return;
+
+    }
+
+
+    experienceTrack.style.transform =
+        `translateX(-${currentExperience * 100}%)`;
+
+
+    const dots =
+        experienceDots.querySelectorAll(
+            ".experience-dot"
+        );
+
+
+    dots.forEach(
+        (dot, index) => {
+
+            dot.classList.toggle(
+                "active",
+                index === currentExperience
+            );
+
+        }
+    );
+
+
+    experiencePrev.disabled =
+        currentExperience === 0;
+
+
+    experienceNext.disabled =
+        currentExperience ===
+        experienceMedia.length - 1;
+
+}
+
+
+
+/* =====================================================
+   GO TO EXPERIENCE
+===================================================== */
+
+function goToExperience(
+    index
+) {
+
+    if (
+        index < 0 ||
+        index >= experienceMedia.length
+    ) {
+
+        return;
+
+    }
+
+
+    currentExperience =
+        index;
+
+
+    updateExperienceCarousel();
+
+}
+
+
+
+/* =====================================================
+   CAROUSEL ARROWS
+===================================================== */
+
+experiencePrev.addEventListener(
+    "click",
+    () => {
+
+        goToExperience(
+            currentExperience - 1
+        );
+
+    }
+);
+
+
+experienceNext.addEventListener(
+    "click",
+    () => {
+
+        goToExperience(
+            currentExperience + 1
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   OPEN IMAGE LIGHTBOX
+===================================================== */
+
+function openExperienceLightbox(
+    media
+) {
+
+    if (
+        !experienceLightbox
+    ) {
+
+        return;
+
+    }
+
+
+    experienceLightboxImage.src =
+        media.src;
+
+
+    experienceLightboxImage.alt =
+        media.alt || "";
+
+
+    experienceLightboxCaption.textContent =
+        media.caption || media.title || "";
+
+
+    experienceLightbox.classList.add(
+        "open"
+    );
+
+
+    experienceLightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =====================================================
+   CLOSE IMAGE LIGHTBOX
+===================================================== */
+
+function closeExperienceLightbox() {
+
+    if (
+        !experienceLightbox
+    ) {
+
+        return;
+
+    }
+
+
+    experienceLightbox.classList.remove(
+        "open"
+    );
+
+
+    experienceLightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    experienceLightboxImage.src =
+        "";
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+experienceLightboxClose.addEventListener(
+    "click",
+    closeExperienceLightbox
+);
+
+
+document
+    .querySelector(
+        ".experience-lightbox-overlay"
+    )
+    .addEventListener(
+        "click",
+        closeExperienceLightbox
+    );
+
+
+
+/* =====================================================
+   OPEN YOUTUBE
+===================================================== */
+
+function openYouTube(
+    slide,
+    media
+) {
+
+    /*
+     * Evitamos crear múltiples iframes
+     * si el usuario vuelve a hacer click.
+     */
+
+    if (
+        slide.querySelector(
+            "iframe"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    slide.innerHTML = `
+
+        <iframe
+            src="https://www.youtube.com/embed/${media.id}?autoplay=1&rel=0"
+            title="${media.title || "Video de Nuevas Sendas"}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+        ></iframe>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        /*
+         * Lightbox
+         */
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeExperienceLightbox();
+
+        }
+
+
+        /*
+         * Carousel
+         */
+
+        if (
+            document.activeElement ===
+            document.body
+        ) {
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                goToExperience(
+                    currentExperience - 1
+                );
+
+            }
+
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                goToExperience(
+                    currentExperience + 1
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   INIT EXPERIENCE CAROUSEL
+===================================================== */
+
+buildExperienceCarousel();

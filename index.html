@@ -27,6 +27,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -343,7 +346,7 @@
             <div>
 
                 <div
-                    class="section-kicker white-kicker reveal"
+                    class="section-kicker white-kicker"
                 >
                     Elegí cómo acompañamos
                 </div>
@@ -511,7 +514,6 @@
         <!-- CARDS -->
 
         <div class="destinations-grid">
-
 
             <!-- EL TERRAPLEN -->
 
@@ -1290,7 +1292,127 @@
 
     </div>
 
+
+    <!-- =================================================
+         GALERÍA / CARRUSEL DE EXPERIENCIAS
+    ================================================= -->
+
+    <div class="experience-gallery content-container">
+
+        <div class="experience-gallery-heading reveal">
+
+            <div>
+
+                <div class="section-kicker">
+                    Momentos que quedan
+                </div>
+
+                <h3 class="experience-gallery-title">
+                    VIVÍ LA
+                    <span>EXPERIENCIA</span>
+                </h3>
+
+            </div>
+
+            <p>
+                Algunas imágenes y videos de lo que sucede
+                cuando comienza una nueva senda.
+            </p>
+
+        </div>
+
+
+        <div
+            class="experience-carousel reveal"
+            id="experienceCarousel"
+        >
+
+            <button
+                class="experience-arrow experience-prev"
+                id="experiencePrev"
+                aria-label="Experiencia anterior"
+            >
+                ←
+            </button>
+
+
+            <div class="experience-viewport">
+
+                <div
+                    class="experience-track"
+                    id="experienceTrack"
+                >
+                    <!--
+                        El contenido se genera automáticamente
+                        desde EXPERIENCE MEDIA en app.js.
+                    -->
+                </div>
+
+            </div>
+
+
+            <button
+                class="experience-arrow experience-next"
+                id="experienceNext"
+                aria-label="Siguiente experiencia"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <div
+            class="experience-dots"
+            id="experienceDots"
+        ></div>
+
+    </div>
+
 </section>
+
+
+<!-- =====================================================
+     LIGHTBOX EXPERIENCIA
+===================================================== -->
+
+<div
+    class="experience-lightbox"
+    id="experienceLightbox"
+    aria-hidden="true"
+>
+
+    <div class="experience-lightbox-overlay"></div>
+
+    <div
+        class="experience-lightbox-content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Imagen de experiencia"
+    >
+
+        <button
+            class="experience-lightbox-close"
+            id="experienceLightboxClose"
+            aria-label="Cerrar imagen"
+        >
+            ×
+        </button>
+
+        <img
+            id="experienceLightboxImage"
+            src=""
+            alt=""
+        >
+
+        <div
+            class="experience-lightbox-caption"
+            id="experienceLightboxCaption"
+        ></div>
+
+    </div>
+
+</div>
 
 
 <!-- =====================================================
